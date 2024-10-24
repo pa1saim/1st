@@ -45,4 +45,14 @@ jobs:
        working-directory: ./codebase/rdicidr-0.1.0/
        run: npm run build
 
+     - name: Build Docker image
+       run: docker build -t acreus.azurecr.io/my-app:v1 .
+     
+     - name: Login to ACR
+       run: echo ${{ secrets.AZURE_ACR_PASSWORD }} | docker login acreus.azurecr.io --username ${{ secrets.AZURE_ACR_USERNAME }} --password-stdin
+
+     - name: Push Docker image to ACR
+       run: docker push acreus.azurecr.io/my-app:v1
+
+
        #added
