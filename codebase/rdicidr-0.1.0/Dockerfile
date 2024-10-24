@@ -1,6 +1,6 @@
 FROM node:15 as builder
 
-WORKDIR ./codebase/rdicidr-0.1.0/
+WORKDIR ./codebase/rdicidr-0.1.0
 
 COPY package*.json ./
 
@@ -14,12 +14,12 @@ FROM node:15
 
 WORKDIR /app
 
-COPY --from=builder ./codebase/rdicidr-0.1.0/ /app
+COPY --from=builder ./codebase/rdicidr-0.1.0 /app
 
 RUN npm install --only=production
 
-EXPOSE 80
+EXPOSE 3000
 
-HEALTHCHECK CMD curl --fail http://localhost:80 || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:3000 || exit 1
 
 ENTRYPOINT ["npm", "start"]
