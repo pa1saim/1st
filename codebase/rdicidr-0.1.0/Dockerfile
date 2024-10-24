@@ -18,4 +18,6 @@ COPY --from=builder ./codebase/rdicidr-0.1.0/ /app
 
 RUN npm install --only=production
 
+EXPOSE 80
+
 ENTRYPOINT ["npm", "start"]
