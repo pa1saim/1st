@@ -20,4 +20,6 @@ RUN npm install --only=production
 
 EXPOSE 80
 
+HEALTHCHECK CMD curl --fail http://localhost:80 || exit 1
+
 ENTRYPOINT ["npm", "start"]
